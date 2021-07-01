@@ -22,36 +22,41 @@ Questo richiederà un minimo di ricerca.
 */
 
 
-var age = prompt("Inserisci la tua età").trim();
-var kilometres = prompt("Quanti chilometri vuoi percorrere?").trim();
+var age = parseInt(prompt("Inserisci la tua età"));
+var kilometres = parseInt(prompt("Quanti chilometri vuoi percorrere?"));
 var underage = 17;
 var overAge = 65;
 var costTicket = 0.21; /*simbolo dell'euro da cercare*/
-var discountUnderage = (20 * 100);
-var discountOverAge = (40 * 100);
+var ticketStandard = kilometres * costTicket;
+var discountUnderage = 0.2;
+var discountOverAge = 0.4;
 
 console.log(age);
 console.log(kilometres);
 
 /*calcolo per gli sconti sia -18 che +65*/
-var saleUnderage = (costTicket * discountUnderage);
-var saletOverAge = (costTicket * discountOverAge);
-var ticketStandard = (kilometres * costTicket)
-
-
-// Validation
+var saleUnderage = (((ticketStandard * discountUnderage) - ticketStandard) * -1);
+var saletOverAge = (((ticketStandard * discountOverAge) - ticketStandard) * -1);
 
 
 
-//if (!isNaN(firstAge)) {
-if (age < underage) {
-    console.log(saleUnderage);
-} else if (age) {
-    console.log(ticketStandard);
-} else if (age >= overAge) {
-    console.log(saletOverAge);
+// Validation da verificare meglio quello che stampa su html
+var solution1 = document.getElementById('ticket');
+solution1.innerHTML = 'Il costo del biglietto è di: ' + saleUnderage;
+var solution2 = document.getElementById('ticket');
+solution2.innerHTML = 'Il costo del biglietto è di: ' + ticketStandard;
+var solution3 = document.getElementById('ticket');
+solution3.innerHTML = 'Il costo del biglietto è di: ' + saletOverAge;
+
+if (!isNaN(age)) {
+    if (age <= underage) {
+        console.log(saleUnderage);
+    } else if (age) {
+        console.log(ticketStandard);
+    } else if (age >= overAge) {
+        console.log(saletOverAge);
+    }
+} else {
+    alert('hai inserito numeri non validi');
 }
-//} else {
-//    alert('hai inserito numeri non validi');
-//}
 
